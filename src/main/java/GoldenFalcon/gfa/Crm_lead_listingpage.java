@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import abstractcponents.Abstractclass;
 
-public class Crm_page extends Abstractclass{
+public class Crm_lead_listingpage extends Abstractclass{
 	
 	WebDriver driver;
 	
-	public Crm_page(WebDriver driver)
+	public Crm_lead_listingpage(WebDriver driver)
 	{
 		super(driver);
 		this.driver=driver;
@@ -24,6 +24,7 @@ public class Crm_page extends Abstractclass{
 	@FindBy(xpath="(//li[@class='breadcrumb-item active'])[1]")
 	WebElement check_new;
 	
+	
 
 	public void click_create()
 	{
@@ -33,10 +34,12 @@ public class Crm_page extends Abstractclass{
 	
 	public String verify_new() throws InterruptedException
 	{
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		waitforElementvisibility(check_new);
 		return check_new.getText();
 	}
+	
+	
 }
 
 
