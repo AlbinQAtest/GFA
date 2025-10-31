@@ -34,7 +34,7 @@ public class crm_lead extends Abstractclass{
 	@FindBy(xpath="//div[@name='user_id']/div/input")
 	WebElement salesPerson;
 	
-	@FindBy(xpath="//div[@name='rfq_reference']")
+	@FindBy(xpath="//input[@name='rfq_reference']")
 	WebElement rfq_Ref;
 	
 	@FindBy(xpath="//select[@name='lead_priority'")
@@ -83,7 +83,9 @@ public class crm_lead extends Abstractclass{
 	
 	public void rfQRef(String rfqRef)
 	{
-		waitforElementvisibility(rfq_Ref);
+		Actions actions = new Actions(driver);
+		
+		actions.moveToElement(rfq_Ref).perform();
 		rfq_Ref.sendKeys(rfqRef);
 		rfq_Ref.sendKeys(Keys.ENTER);
 	}
