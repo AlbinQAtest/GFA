@@ -37,7 +37,7 @@ public class crm_lead extends Abstractclass{
 	@FindBy(xpath="//input[@name='rfq_reference']")
 	WebElement rfq_Ref;
 	
-	@FindBy(xpath="//select[@name='lead_priority'")
+	@FindBy(xpath="//select[@name='lead_priority']")
 	WebElement priority;
 	
 	
@@ -92,7 +92,8 @@ public class crm_lead extends Abstractclass{
 	
 	public void selectPrioity(String lead_priority)
 	{
-		
+		Actions actions = new Actions(driver);
+		actions.moveToElement(priority).perform();
 	Select dropdown= new Select (priority);
 	dropdown.selectByVisibleText(lead_priority);
 	}
