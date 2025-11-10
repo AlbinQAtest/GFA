@@ -40,6 +40,16 @@ public class crm_lead extends Abstractclass{
 	@FindBy(xpath="//select[@name='lead_priority']")
 	WebElement priority;
 	
+	@FindBy(linkText="Add a line")
+	WebElement addPN;
+	
+	@FindBy(xpath="//button[contains(text(),'Save')]")
+	WebElement saveLead;
+	
+	@FindBy(xpath="//span[@name='name']")
+	WebElement leadNumber;
+	
+	
 	
 	public void selectCustomer(String customername) {
 	    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -96,6 +106,29 @@ public class crm_lead extends Abstractclass{
 		actions.moveToElement(priority).perform();
 	Select dropdown= new Select (priority);
 	dropdown.selectByVisibleText(lead_priority);
+	}
+	
+	public void clickAddPn()
+	{
+
+		Actions actions = new Actions(driver);
+		actions.moveToElement(addPN).perform();
+		addPN.click();
+	}
+	
+	
+	public void saveLead()
+	{
+		waitforElementvisibility(saveLead);
+		saveLead.click();
+	}
+	
+	public void  getleadNumber()
+	{
+		scrollviewUp();
+		waitforElementvisibility(leadNumber);
+		String leadnumber = leadNumber.getText();
+		System.out.println(leadnumber);
 	}
 	
 	

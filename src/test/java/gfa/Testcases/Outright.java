@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import GoldenFalcon.gfa.CRM_PN_details;
 import GoldenFalcon.gfa.Crm_lead_listingpage;
 import GoldenFalcon.gfa.HeaderMenus;
 import GoldenFalcon.gfa.crm_lead;
@@ -16,6 +17,8 @@ import dataset.DataReader;
 
 public class Outright extends Base{
 	
+	
+	public crm_lead createlead;
 	
 	
 	@Test (priority ='1')
@@ -43,8 +46,22 @@ public class Outright extends Base{
 		createlead.selectCustomer(input.get("customername"));
 		createlead.selectSalesperson(input.get("salespersonname"));
 		createlead.rfQRef(input.get("rfqref"));
-		createlead.selectPrioity(input.get("priorty"));
+		createlead.selectPrioity(input.get("priority"));
+		createlead.clickAddPn();
 		
+	}
+	@Test(priority='4')
+	public void addPN() throws InterruptedException
+	{
+		CRM_PN_details pn = new CRM_PN_details (driver);
+		pn.addPndetails("	101-555309-0001");
+	}
+	@Test(priority='5')
+	public void savecrmlead()
+	{
+		crm_lead createlead = new crm_lead(driver);
+		createlead.saveLead();
+		createlead.getleadNumber();
 	}
 	@DataProvider
 	public Object[][] dataSet() throws IOException

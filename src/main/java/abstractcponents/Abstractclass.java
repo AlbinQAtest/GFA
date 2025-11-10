@@ -28,5 +28,11 @@ public class Abstractclass {
 	    js.executeScript("arguments[0].dispatchEvent(new Event('change', { bubbles: true }));", element);
 	    js.executeScript("arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));", element);
 	}
+	
+	public void scrollviewUp()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, 0);");
+	}
 
 }
