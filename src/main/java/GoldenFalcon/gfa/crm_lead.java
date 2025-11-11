@@ -1,6 +1,7 @@
 package GoldenFalcon.gfa;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -48,6 +49,33 @@ public class crm_lead extends Abstractclass{
 	
 	@FindBy(xpath="//span[@name='name']")
 	WebElement leadNumber;
+	
+	@FindBy(xpath="//button[@name='2651']")
+	WebElement addVendor;
+	
+	@FindBy(xpath="//div[@name='partner_ids']/div/input")
+	WebElement chooseVendor;
+	
+	By vendorDrop = By.xpath("//ul[contains(@class,'ui-autocomplete')");
+	
+	@FindBy(xpath="//ul[contains(@class,'ui-autocomplete')")
+	WebElement vendorDropdown;
+	
+	@FindBy(xpath="//a[@class='ui-menu-item-wrapper']")
+	List<WebElement> vendorNames;
+	
+	@FindBy(xpath="//a[normalize-space(text())='THE BOEING COMPANY']")
+	WebElement vendorNamelist;
+	
+	@FindBy(xpath="//button[@name='action_create_purchase_quotation']")
+	WebElement saveVendor;
+	
+	@FindBy(xpath="//div[@class='o_form_statusbar']//button[@title='Current state'][normalize-space()='RFQ']")
+	WebElement currentState;
+	
+	
+	
+	
 	
 	
 	
@@ -130,6 +158,30 @@ public class crm_lead extends Abstractclass{
 		String leadnumber = leadNumber.getText();
 		System.out.println(leadnumber);
 	}
+	
+	public void addVendor(String vendorname) throws InterruptedException
+	{
+		Actions actions = new Actions(driver);
+		actions.moveToElement(addVendor).perform();
+		addVendor.click();
+		waitforElementvisibility(chooseVendor);
+		chooseVendor.clear();
+		chooseVendor.sendKeys(vendorname);
+		Thread.sleep(1000);
+		vendorNamelist.click();
+		Thread.sleep(1000);
+		saveVendor.click();
+		
+	}
+	
+	public String verifyCorrentState ()
+	{
+		waitforElementvisibility(currentState);
+		String stage =currentState.getText();
+		System.out.println(stage);
+		return stage;
+	}
+		
 	
 	
 }

@@ -1,5 +1,7 @@
 package gfa.Testcases;
 
+import static org.testng.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +64,21 @@ public class Outright extends Base{
 		crm_lead createlead = new crm_lead(driver);
 		createlead.saveLead();
 		createlead.getleadNumber();
+	}
+	
+	@Test(priority='6')
+	public void addvendor() throws InterruptedException
+	{
+		crm_lead createlead = new crm_lead(driver);
+		createlead.addVendor("The Boeing Company");
+	}
+	@Test(priority='7')
+	public void verifystage()
+	{
+		
+		crm_lead createlead = new crm_lead(driver);
+		String currentStage = createlead.verifyCorrentState();
+		Assert.assertEquals(currentStage, "RFQ");
 	}
 	@DataProvider
 	public Object[][] dataSet() throws IOException
